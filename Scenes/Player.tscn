@@ -11,7 +11,7 @@ extents = Vector2( 37, 44.5 )
 extents = Vector2( 37, 44.5 )
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 151, 135 )
+position = Vector2( 179, 93 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -33,12 +33,19 @@ position = Vector2( 6, 4.5 )
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2( 0.1, 0.1 )
+current = true
+zoom = Vector2( 0.6, 0.6 )
 smoothing_enabled = true
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 3 )
 texture_scale = 0.75
 shadow_enabled = true
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 2.49987, 11 )
+scale = Vector2( 3.31806, 2.19167 )
+texture = ExtResource( 3 )
+mode = 3
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

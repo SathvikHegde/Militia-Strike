@@ -10,6 +10,7 @@ extents = Vector2( 30.5, 46 )
 extents = Vector2( 33.5, 48.5 )
 
 [node name="Enemy" type="KinematicBody2D"]
+light_mask = 3
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
