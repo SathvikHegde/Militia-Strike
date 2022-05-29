@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/tFjfasrp_4x-removebg-preview.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/DayBackground.png" type="Texture" id=4]
 [ext_resource path="res://Tilemaps/GrayBlock.tres" type="TileSet" id=5]
+[ext_resource path="res://Assets/light.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 37, 44.5 )
@@ -51,6 +52,11 @@ shape = SubResource( 2 )
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2( 0.1, 0.1 )
 smoothing_enabled = true
+
+[node name="Light2D" type="Light2D" parent="Player"]
+texture = ExtResource( 6 )
+texture_scale = 0.75
+shadow_enabled = true
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 851, 463 )
