@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script>
+        let manifest = [
+"Militia-Strike_LinuxX11_.zip","Militia-Strike_Mac OSX_.zip","Militia-Strike_Windows Desktop_.zip"
+]
+        function generateEntries(data) {
+            let list = document.getElementById("entriesList")
+            for( i in data){
+                let element = data[i]
+
+                let line = document.createElement("li")
+                list.appendChild(line)
+
+                let link = document.createElement("a")
+                line.appendChild(link)
+
+                link.href = "./" + element;
+                link.innerText = element;
+
+            }
+        }
+        generateEntries(manifest)
+
+    </script>
+    <title>Militia-Strike</title>
+</head>
+<body>
+    <h1>Militia-Strike</h1>
+    <pre></pre>
+    <ul id="entriesList">
+    </ul>
+    <script>generateEntries(manifest)</script>
+</body>
+</html>
