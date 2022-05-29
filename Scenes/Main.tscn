@@ -22,4 +22,16 @@ tile_data = PoolIntArray( 983127, 0, 0, 983128, 0, 0, 983129, 0, 0, 983130, 0, 0
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 851, 463 )
+position = Vector2( 840, 453 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 561, 455 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 691, 434 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 588, 159 )
+
+[node name="Enemy5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 808, 170 )
