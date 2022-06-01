@@ -1,44 +1,37 @@
 extends KinematicBody2D
 
-var moveSpeed = 300;
-var bulletSpeed = 1500;
-var bullet = preload("res://Scenes/Bullet.tscn");
+export (int) var speed = 100;
+export (PackedScene) var Bullet;
+
+onready var endOfGun = $EndOfGun;
 
 func _ready():
 	pass 
 
-func _physics_process(delta):
-	var motion = Vector2();
+func _process(delta):
+	var direction = Vector2();
 	
 	if Input.is_action_pressed("up"):
-		motion.y -= 1;
+		direction.y = -1;
 	if Input.is_action_pressed("down"):
-		motion.y += 1;
+		direction.y = 1;
 	if Input.is_action_pressed("right"):
-		motion.x += 1;
+		direction.x = 1;
 	if Input.is_action_pressed("left"):
-		motion.x -= 1;
+		direction.x = -1;
 	
-	motion = motion.normalized();
-	motion = move_and_slide(motion * moveSpeed);
+	direction = direction.normalized();
 	
+	move_and_slide(direction * speed);
 	look_at(get_global_mouse_position());
-	
-	if Input.is_action_just_pressed("mouse1"):
-		fireBullet();
 
-func fireBullet():
-	var bulletInstance = bullet.instance();
-	bulletInstance.position = get_global_position();
-	bulletInstance.position.x += 8;
-	bulletInstance.position.y += 8;
-	bulletInstance.rotation_degrees = rotation_degrees;
-	bulletInstance.apply_impulse(Vector2(), Vector2(bulletSpeed, 0).rotated(rotation));
-	get_tree().get_root().call_deferred("add_child", bulletInstance);
+func _unhandled_input(event):
+	if event.is_action_released("mouse1"):
+		shootBullet();
 
-func killed():
-	get_tree().reload_current_scene();
-
-func _on_Area2D_body_entered(body):
-	if "Enemy" in body.name:
-		killed();
+func shootBullet():
+	var bulletInstance = Bullet.instance();
+	add_child(bulletInstance);
+	bulletInstance.global_position = endOfGun.global_position;
+	var target = bulletInstance.global_position.direction_to(get_global_mouse_position()).normalized();
+	bulletInstance.setDirection(target);
