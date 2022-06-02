@@ -10,9 +10,19 @@ extents = Vector2( 20, 25 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 648, 645, 40, 49 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 2 )
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 0.068
+one_shot = true
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_KillTimer_timeout"]
