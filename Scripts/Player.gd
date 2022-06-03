@@ -7,6 +7,8 @@ signal playerFiredBullet(bullet, position, direction);
 
 onready var endOfGun = $EndOfGun;
 onready var gunDirection = $GunDirection;
+onready var attackCooldown = $AttackCooldown;
+onready var muzzleFlashAnimation = $AnimationPlayer;
 
 func _ready():
 	pass 
@@ -33,6 +35,9 @@ func _unhandled_input(event):
 		shootBullet();
 
 func shootBullet():
-	var bulletInstance = Bullet.instance();
-	var direction = (gunDirection.global_position - endOfGun.global_position).normalized();
-	emit_signal("playerFiredBullet", bulletInstance, endOfGun.global_position, direction);
+	if attackCooldown.is_stopped():
+		var bulletInstance = Bullet.instance();
+		var direction = (gunDirection.global_position - endOfGun.global_position).normalized();
+		emit_signal("playerFiredBullet", bulletInstance, endOfGun.global_position, direction);
+		attackCooldown.start();
+		muzzleFlashAnimation.play("muzzleFlash");
