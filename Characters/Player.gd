@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 export (int) var speed = 100;
 export (PackedScene) var Bullet;
@@ -9,13 +10,9 @@ onready var endOfGun = $EndOfGun;
 onready var gunDirection = $GunDirection;
 onready var attackCooldown = $AttackCooldown;
 onready var muzzleFlashAnimation = $AnimationPlayer;
+onready var health = $Health;
 
-var health: int = 100;
-
-func _ready():
-	pass 
-
-func _process(delta):
+func _physics_process(delta):
 	var direction = Vector2();
 	
 	if Input.is_action_pressed("up"):
@@ -45,5 +42,5 @@ func shootBullet():
 		muzzleFlashAnimation.play("muzzleFlash");
 
 func handleHit():
-	health -= 30;
-	print("Player got hit. Health: ", health);
+	health.health -= 30;
+	print("Player got hit. Health: ", health.health);

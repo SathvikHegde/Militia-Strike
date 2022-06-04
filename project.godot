@@ -12,16 +12,22 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Bullet",
 "language": "GDScript",
-"path": "res://Scripts/Bullet.gd"
+"path": "res://Weapons/Bullet.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Characters/Player.gd"
 } ]
 _global_script_class_icons={
-"Bullet": ""
+"Bullet": "",
+"Player": ""
 }
 
 [application]
 
 config/name="Militia-Strike"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [display]
