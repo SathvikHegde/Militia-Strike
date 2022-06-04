@@ -10,6 +10,8 @@ onready var gunDirection = $GunDirection;
 onready var attackCooldown = $AttackCooldown;
 onready var muzzleFlashAnimation = $AnimationPlayer;
 
+var health: int = 100;
+
 func _ready():
 	pass 
 
@@ -41,3 +43,7 @@ func shootBullet():
 		emit_signal("playerFiredBullet", bulletInstance, endOfGun.global_position, direction);
 		attackCooldown.start();
 		muzzleFlashAnimation.play("muzzleFlash");
+
+func handleHit():
+	health -= 30;
+	print("Player got hit. Health: ", health);
