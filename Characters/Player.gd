@@ -4,8 +4,12 @@ class_name Player
 export (int) var speed = 100;
 
 onready var health = $Health;
+onready var weapon = $Weapon;
 
 signal playerFiredBullet(bullet, position, direction);
+
+func _ready():
+	weapon.connect("weaponFired", self, "shootBullet");
 
 func _physics_process(delta):
 	var direction = Vector2();
@@ -26,10 +30,10 @@ func _physics_process(delta):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("mouse1"):
-		shootBullet();
+		weapon.shootBullet();
 
-func shootBullet():
-	pass
+func shootBullet(bullet, position: Vector2, direction: Vector2):
+	emit_signal("playerFiredBullet", bullet, position, direction);
 
 func handleHit():
 	health.health -= 30;

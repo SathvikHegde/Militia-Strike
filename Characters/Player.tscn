@@ -6,7 +6,7 @@
 [ext_resource path="res://Characters/Health.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 28, 21.5 )
+extents = Vector2( 23.5, 21.5 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 264, 70 )
@@ -15,11 +15,13 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 1, 0, 55, 43 )
+region_rect = Rect2( 349, -1, 39, 43 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 4.5, 0 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." instance=ExtResource( 4 )]
 
 [node name="Weapon" parent="." instance=ExtResource( 3 )]
+position = Vector2( 25, 11 )
