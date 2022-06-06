@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://Characters/Player.gd"
+}, {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://Weapons/Weapon.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
-"Player": ""
+"Player": "",
+"Weapon": ""
 }
 
 [application]
@@ -29,6 +35,10 @@ _global_script_class_icons={
 config/name="Militia-Strike"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GlobalSignals="*res://Globals/GlobalSignals.gd"
 
 [display]
 

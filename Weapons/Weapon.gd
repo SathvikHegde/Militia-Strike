@@ -1,8 +1,7 @@
 extends Node2D
+class_name Weapon
 
 export (PackedScene) var Bullet;
-
-signal weaponFired(bullet, position, direction);
 
 onready var endOfGun = $EndOfGun;
 onready var gunDirection = $GunDirection;
@@ -13,6 +12,6 @@ func shootBullet():
 	if attackCooldown.is_stopped() and Bullet != null:
 		var bulletInstance = Bullet.instance();
 		var direction = (gunDirection.global_position - endOfGun.global_position).normalized();
-		emit_signal("weaponFired", bulletInstance, endOfGun.global_position, direction);
+		GlobalSignals.emit_signal("bulletFired", bulletInstance, endOfGun.global_position, direction);
 		attackCooldown.start();
 		muzzleFlashAnimation.play("MuzzleFlash");

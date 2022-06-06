@@ -1,6 +1,11 @@
 extends KinematicBody2D
 
 onready var health = $Health;
+onready var ai = $AI;
+onready var weapon = $Weapon;
+
+func _ready():
+	ai.init(self, weapon);
 
 func handleHit():
 	health.health -= 30;
