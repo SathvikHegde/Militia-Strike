@@ -7,27 +7,38 @@ enum State {
 	ENGAGE
 };
 
+var moveSpeed = 100;
+
 onready var detectionZone = $DetectionZone;
 onready var patrolTimer = $PatrolTimer;
 
-var state: int = State.PATROL setget setState, getState;
+var state: int = -1 setget setState, getState;
 var player: Player = null;
-var character = null;
+var character: KinematicBody2D = null;
 var weapon: Weapon = null;
 
 var origin: Vector2 = Vector2();
 var patrolLocation: Vector2 = Vector2();
 var patrolReached: bool = false;
+var characterVelocity: Vector2 = Vector2();
 
-func _process(delta):
+func _ready():
+	setState(State.PATROL);
+
+func _physics_process(delta):
 	match state:
 		State.PATROL:
 			if not patrolReached:
-				pass
+				character.move_and_slide(characterVelocity);
+				character.rotateTowards(patrolLocation);
+				if character.global_position.distance_to(patrolLocation) < 5:
+					patrolReached = true;
+					characterVelocity = Vector2();
+					patrolTimer.start();
 		State.ENGAGE:
 			if player != null && weapon != null:
+				character.rotateTowards(player.global_position);
 				var angleToPlayer = character.global_position.direction_to(player.global_position).angle();
-				character.rotation = lerp(character.rotation, angleToPlayer, 0.1);
 				if abs(character.rotation - angleToPlayer) < 0.05:
 					weapon.shootBullet();
 			else:
@@ -65,9 +76,9 @@ func _on_DetectionZone_body_exited(body):
 		player = null;
 
 func _on_PatrolTimer_timeout():
-	var patrolRange = 13;
+	var patrolRange = 300;
 	var patrolRandX = rand_range(-patrolRange, patrolRange);
 	var patrolRandY = rand_range(-patrolRange, patrolRange);
 	patrolLocation = Vector2(patrolRandX, patrolRandY) + origin;
 	patrolReached = false;
-	
+	characterVelocity = character.velocityTowards(patrolLocation);
