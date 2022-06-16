@@ -17,8 +17,8 @@ var player: Player = null;
 var character: KinematicBody2D = null;
 var weapon: Weapon = null;
 
-var origin: Vector2 = Vector2();
-var patrolLocation: Vector2 = Vector2();
+var origin: Vector2 = Vector2.ZERO;
+var patrolLocation: Vector2 = Vector2.ZERO;
 var patrolReached: bool = false;
 var characterVelocity: Vector2 = Vector2();
 

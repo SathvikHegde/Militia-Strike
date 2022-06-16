@@ -7,7 +7,7 @@ onready var health = $Health;
 onready var weapon = $Weapon;
 
 func _physics_process(delta):
-	var direction = Vector2();
+	var direction = Vector2.ZERO;
 	
 	if Input.is_action_pressed("up"):
 		direction.y = -1;
