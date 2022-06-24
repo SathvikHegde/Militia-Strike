@@ -5,6 +5,7 @@ export (int) var speed = 100;
 
 onready var health = $Health;
 onready var weapon = $Weapon;
+onready var team = $Team;
 
 func _physics_process(delta):
 	var direction = Vector2.ZERO;
@@ -30,3 +31,6 @@ func _unhandled_input(event):
 func handleHit():
 	health.health -= 30;
 	print("Player got hit. Health: ", health.health);
+
+func getTeam():
+	return team.team;

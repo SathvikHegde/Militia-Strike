@@ -5,9 +5,10 @@ export (int) var speed = 100;
 onready var health = $Health;
 onready var ai = $AI;
 onready var weapon = $Weapon;
+onready var team = $Team;
 
 func _ready():
-	ai.init(self, weapon);
+	ai.init(self, weapon, team.team);
 
 func handleHit():
 	health.health -= 30;
@@ -22,3 +23,6 @@ func rotateTowards(location: Vector2):
 
 func velocityTowards(location: Vector2):
 	return global_position.direction_to(location) * speed;
+
+func getTeam():
+	return team.team;
