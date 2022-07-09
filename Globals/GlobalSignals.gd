@@ -1,7 +1,3 @@
 extends Node
 
-signal bulletFired(bullet, position, direction);
-
-
-func _ready():
-	pass
+signal bulletFired(bullet, team, position, direction);

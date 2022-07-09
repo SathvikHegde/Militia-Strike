@@ -4,8 +4,11 @@ class_name Player
 export (int) var speed = 100;
 
 onready var health = $Health;
-onready var weapon = $Weapon;
+onready var weapon: Weapon = $Weapon;
 onready var team = $Team;
+
+func _ready():
+	weapon.init(team.team);
 
 func _physics_process(delta):
 	var direction = Vector2.ZERO;

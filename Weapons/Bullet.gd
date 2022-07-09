@@ -4,6 +4,7 @@ class_name Bullet
 export (int) var speed = 100;
 
 var direction = Vector2.ZERO;
+var team: int = -1;
 
 onready var killTimer = $KillTimer;
 
@@ -25,5 +26,6 @@ func _on_KillTimer_timeout():
 
 func _on_Bullet_body_entered(body):
 	if body.has_method("handleHit"):
-		body.handleHit();
+		if body.has_method("getTeam") and body.getTeam() != team:
+			body.handleHit();
 		queue_free();

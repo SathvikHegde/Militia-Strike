@@ -4,11 +4,12 @@ export (int) var speed = 100;
 
 onready var health = $Health;
 onready var ai = $AI;
-onready var weapon = $Weapon;
+onready var weapon: Weapon = $Weapon;
 onready var team = $Team;
 
 func _ready():
 	ai.init(self, weapon, team.team);
+	weapon.init(team.team);
 
 func handleHit():
 	health.health -= 30;
