@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxecysmknn58g"]
+
+[ext_resource type="Texture2D" uid="uid://lunaalxeeqvt" path="res://assests/maps/playground/volcano_floor.png" id="1_phqik"]
+[ext_resource type="PackedScene" uid="uid://dcsp5ddb1t51y" path="res://scenes/game/player.tscn" id="2_lf3yu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xs53j"]
+size = Vector2(1144, 113)
+
+[node name="playground" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(308, 438)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(266.5, 161.5)
+scale = Vector2(2.23242, 0.224609)
+texture = ExtResource("1_phqik")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(266, 160.5)
+shape = SubResource("RectangleShape2D_xs53j")
+
+[node name="player" parent="." instance=ExtResource("2_lf3yu")]
+position = Vector2(223, 415)
+scale = Vector2(0.25, 0.25)
