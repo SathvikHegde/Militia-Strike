@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcsp5ddb1t51y"]
+[gd_scene load_steps=4 format=3 uid="uid://dcsp5ddb1t51y"]
 
 [ext_resource type="Script" path="res://scenes/game/player.gd" id="1_4s6iy"]
 [ext_resource type="Texture2D" uid="uid://bfp4412xdomcm" path="res://assests/sprite/gBot_pieces.png" id="2_s8468"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0s3fi"]
+radius = 180.0
+height = 872.0
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_4s6iy")
 
 [node name="body_parts" type="Node2D" parent="."]
+position = Vector2(-709, -471)
 
 [node name="arm_left" type="Polygon2D" parent="body_parts"]
 position = Vector2(577, 307)
@@ -65,6 +70,7 @@ uv = PackedVector2Array(35.2041, 26.0204, 86.2245, 9.18367, 143.878, 43.8776, 10
 bones = ["hip", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "hip/chest", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "hip/chest/head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "hip/chest/head/jaw", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "hip/chest/arm_right", PackedFloat32Array(1, 1, 1, 0.5, 0, 0, 0, 0, 0.5), "hip/chest/arm_right/hand_right", PackedFloat32Array(0, 0, 0, 0.5, 1, 1, 1, 1, 0.5), "hip/chest/arm_left", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "hip/chest/arm_left/hand_left", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "hip/leg_right", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "hip/leg_right/calf_right", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "hip/leg_right/calf_right/foot_right", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "hip/leg_left", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "hip/leg_left/calf_left", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0), "hip/leg_left/calf_left/foot_left", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)]
 
 [node name="skeleton" type="Skeleton2D" parent="."]
+position = Vector2(-709, -471)
 
 [node name="hip" type="Bone2D" parent="skeleton"]
 position = Vector2(713, 587)
@@ -126,3 +132,7 @@ rest = Transform2D(1, 0, 0, 1, -25, 85)
 position = Vector2(4, 129)
 scale = Vector2(5.5, 5.5)
 rest = Transform2D(5.5, 0, 0, 5.5, 4, 129)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -48)
+shape = SubResource("CapsuleShape2D_0s3fi")
